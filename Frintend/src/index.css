@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.notfound {
+    width: 66rem;
+    margin: 0 auto;
+    position: fixed;
+    top: -57px;
+    left: 379px;
+    transform: translate(-50%, -50%);
+}
+.valid {
+    width: 66rem;
+    margin: 0 auto;
+    position: fixed;
+    top: 209px;
+    left: 375px;
+    transform: translate(-50%, -50%);
+}
+.alet{
+    margin-top: 45px;
+    width: 500px;
+  }
+  .table{
+    margin-left: 100px;
+    width: 1233px;
+    margin-top: 30px;
+  }
