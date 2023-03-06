@@ -6,7 +6,7 @@ const db = {};
 db.mongoose = mongoose;
 
 db.user = require("./userModel")
-db.role = require("./roleModel")
+// db.role = require("./roleModel")
 db.address = require('./addressModel')
 db.order = require('./orderModel')
 db.status = require('./statusModel')
@@ -18,33 +18,33 @@ db.ordertime = require('./ordertime')
 
 
 
-db.role.estimatedDocumentCount((err, count) => {
-  if (!err && count === 0) {
-    new db.role({
-      name: "manager"
-    })
-      .save(err => {
-        if (err) { console.log("error", err) }
-        console.log("added 'manager' to roles collection");
-      });
+// db.role.estimatedDocumentCount((err, count) => {
+//   if (!err && count === 0) {
+//     new db.role({
+//       name: "manager"
+//     })
+//       .save(err => {
+//         if (err) { console.log("error", err) }
+//         console.log("added 'manager' to roles collection");
+//       });
 
-    new db.role({
-      name: "client"
-    })
-      .save(err => {
-        if (err) { console.log("error", err) }
-        console.log("added 'client' to roles collection");
-      });
+//     new db.role({
+//       name: "client"
+//     })
+//       .save(err => {
+//         if (err) { console.log("error", err) }
+//         console.log("added 'client' to roles collection");
+//       });
 
-    new db.role({
-      name: "livreur"
-    })
-      .save(err => {
-        if (err) { console.log("error", err) }
-        console.log("added 'livreur' to roles collection");
-      });
-  }
-});
+//     new db.role({
+//       name: "livreur"
+//     })
+//       .save(err => {
+//         if (err) { console.log("error", err) }
+//         console.log("added 'livreur' to roles collection");
+//       });
+//   }
+// });
 
 db.status.estimatedDocumentCount((err, count) => {
   if (!err && count === 0) {

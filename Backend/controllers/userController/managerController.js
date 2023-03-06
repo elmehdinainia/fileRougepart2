@@ -1,14 +1,63 @@
 const jwt = require('jsonwebtoken')
 var storage = require('local-storage')
 const User = require('../../models/userModel')
-const Role = require('../../models/roleModel')
 const Category = require('../../models/category')
 const Meal = require('../../models/meal')
 const upload = require("../../outils/imageUmploder");
-const { role } = require('../../models')
 const removefile = require('../../outils/removeimage')
 const fs = require('fs')
 const { db } = require('../../models/userModel')
+
+
+
+const registerlivreur = async (req, res) => {
+  const { first_name, last_name, phone, email, password, confirm_password } = req.body
+  const role='livreur'
+
+  if (first_name === '' || last_name === '' || phone === '' || email === '' || password === '' || confirm_password === '') throw Error('Please fill all the fields')
+
+
+  const userExists = await User.findOne({ email })
+  const phoneExists = await User.findOne({ phone })
+
+  if (userExists) { throw Error('User already Exists') }
+  else {
+    if (phoneExists) throw Error('Phone the User already Exists')
+    else {
+      // Password Hash 
+      const salt = await bcrypt.genSalt(10)
+      const password_Hash = await bcrypt.hash(password, salt)
+
+      const user = await User.create({
+        first_name,
+        last_name,
+        phone,
+        role,
+        email,
+        password: password_Hash,
+        verification: false,
+        isBanned: false
+      })
+
+      if (user) {
+        mainMail.nodemailler('verify-email', email)
+        throw Error('Check Your Email')
+      }
+
+      if (!user) throw Error('Invalid User Data')
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
 
 
 const managerUser = async (req, res) => {
