@@ -3,6 +3,9 @@ const bcrypt = require('bcryptjs')
 const storage = require('local-storage')
 const User = require('../../models/userModel')
 const mainMail = require('../../middleware/mailer')
+const forgetMailer= require('../../middleware/forgetMailer')
+
+
 
 
 
@@ -133,7 +136,7 @@ const loginUser = async (req, res) => {
        
                         /** 
                          * methode => post
-                         * URl => http://localhost:5500/api/auth/login
+                         * URl => http://localhost:5500/api/auth/forgot-Password
                          * access => pulic
                          */
 
@@ -143,9 +146,11 @@ const forgotPassword = async (req, res) => {
 
   if (email === '') throw Error('Enter Your Email')
   const forgot_Password_email = await User.findOne({ email })
+  // res.send(forgot_Password_email)
 
   if (!forgot_Password_email) throw Error('User Not Found')
-  mainMail.main('verify-forgot-password', email)
+  forgetMailer.forgetMailer('verify-forgot-password', email)
+
   throw Error('Check Your Email')
 }
 
