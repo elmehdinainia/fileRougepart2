@@ -12,7 +12,7 @@ const {
   deletproduct,
   GetAllProduct,
   updateproduct,
-  registerlivreur,
+  Registerlivreur,
   statistique
 
 } = require('../../controllers/userController/managerController')
@@ -25,7 +25,7 @@ const upload = require('../../outils/imageUmploder')
 
 router.get('/manager/me', tryCatch(managerUser))
 router.post('/manager/addcategory', tryCatch(addcategory))
-router.post('/manager/registerlivreur', tryCatch(registerlivreur))
+router.post('/manager/registerlivreur', tryCatch(Registerlivreur))
 //crud category
 router.get('/manager/findcategory', tryCatch(findcategory))
 router.delete('/manager/deletcategory/:id', tryCatch(deletcategory))

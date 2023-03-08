@@ -21,7 +21,7 @@ import CategoryManager from './pages/user/manager/categoryManager'
 import LivreursManager from './pages/user/manager/LivreursManager'
 import ClientsManager from './pages/user/manager/clientsManager'
 import SettingManager from './pages/user/manager/settingManager'
-import Addlivreur from './pages/user/manager/RegisterLivreur'
+import RegisterLivreur from './pages/user/manager/RegisterLivreur'
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -55,7 +55,7 @@ function App() {
           {/* { Manager } */}
           <Route path='/dashboard/admin' element={<Dashboards />}>
             <Route path='' element={<DashbordManager />} />
-            <Route path='addlivreur' element={<Addlivreur />} />
+            <Route path='RegisterLivreur' element={<RegisterLivreur />} />
             <Route path='repas' element={<RepasManager />} />
             <Route path='category' element={<CategoryManager />} />
             <Route path='command' element={<CommandManager />} />

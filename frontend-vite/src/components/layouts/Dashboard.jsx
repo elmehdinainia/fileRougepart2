@@ -47,7 +47,7 @@ const Dashboard = () => {
   const MenusManager = [
     { title: "Dashboad", icon: AiOutlineDashboard, route: '' },
     { title: "Repas", icon: GiMeal, gap: true, route: 'repas' },
-    { title: "addlivreur", icon: GiMeal, gap: true, route: 'addlivreur' },
+    { title: "addlivreur", icon: GiMeal, gap: true, route: 'RegisterLivreur' },
     { title: "Category", icon: BiCategoryAlt, route: 'category' },
     { title: "Commands", icon: BiCommand, route: 'command' },
     { title: "Livreurs", icon: TbTruckDelivery, route: 'livreurs' },
@@ -135,8 +135,8 @@ const Dashboard = () => {
             </div>
           </nav>
 
-          {<Outlet />}
 
+          {<Outlet />}
         </div>
 
       </div>

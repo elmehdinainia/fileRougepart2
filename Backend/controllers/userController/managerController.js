@@ -1,20 +1,22 @@
 const jwt = require('jsonwebtoken')
 var storage = require('local-storage')
 const User = require('../../models/userModel')
+const bcrypt = require("bcryptjs");
 const Category = require('../../models/category')
 const Meal = require('../../models/meal')
 const upload = require("../../outils/imageUmploder");
 const removefile = require('../../outils/removeimage')
+const mainMail = require("../../middleware/mailer");
 const fs = require('fs')
 const { db } = require('../../models/userModel')
 
 
 
-const registerlivreur = async (req, res) => {
-  const { first_name, last_name, phone, email, password, confirm_password } = req.body
+const Registerlivreur = async (req, res) => {
+  const { first_name, last_name, phone,address ,email, password, confirm_password } = req.body
   const role='livreur'
 
-  if (first_name === '' || last_name === '' || phone === '' || email === '' || password === '' || confirm_password === '') throw Error('Please fill all the fields')
+  if (first_name === '' || last_name === '' ||  address === ""|| phone === '' || email === '' || password === '' || confirm_password === '') throw Error('Please fill all the fields')
 
 
   const userExists = await User.findOne({ email })
@@ -33,6 +35,7 @@ const registerlivreur = async (req, res) => {
         last_name,
         phone,
         role,
+        address,
         email,
         password: password_Hash,
         verification: false,
@@ -259,7 +262,7 @@ module.exports = {
   statistique,
   addimage,
   deletproduct,
-  registerlivreur,
+  Registerlivreur,
   GetAllProduct,
   updateproduct
 }
