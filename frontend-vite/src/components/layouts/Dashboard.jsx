@@ -9,8 +9,7 @@ import { TbTruckDelivery } from 'react-icons/tb';
 import Button from '../Button';
 
 import Axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectCart, toggleCard } from '../../store/slices/cart.sclice';
+
 
 const baseURL = 'http://localhost:5500/api/auth'
 
@@ -31,8 +30,9 @@ const Dashboard = () => {
   const [open, setOpen] = useState(true)
 
   const role = localStorage.getItem('role')
-  const cart = useSelector(selectCart)
-  const dispatch = useDispatch()
+  const firstname = localStorage.getItem('first_name')
+
+
 
   const MenusClient = [
     { title: "Dashboad", icon: AiOutlineDashboard, route: '' },
@@ -47,17 +47,23 @@ const Dashboard = () => {
   const MenusManager = [
     { title: "Dashboad", icon: AiOutlineDashboard, route: '' },
     { title: "Repas", icon: GiMeal, gap: true, route: 'repas' },
+    { title: "addlivreur", icon: GiMeal, gap: true, route: 'addlivreur' },
     { title: "Category", icon: BiCategoryAlt, route: 'category' },
     { title: "Commands", icon: BiCommand, route: 'command' },
     { title: "Livreurs", icon: TbTruckDelivery, route: 'livreurs' },
     { title: "Clients", icon: FiUsers, route: 'clients' },
     { title: "Setting", icon: AiFillSetting, gap: true, route: 'setting' },
   ]
+  const MenusLivreur = [
+    { title: "Dashboad", icon: AiOutlineDashboard, route: '' },
+    { title: "Commands", icon: BiCommand, route: 'command' },
+    { title: "Setting", icon: AiFillSetting, gap: true, route: 'setting' },
+  ]
 
   return (
     <div>
       <div className="flex relative">
-        <div className={`${open ? 'w-72' : 'w-20'} fixed top-0 duration-300 px-5 min-h-screen  bg-dark`}>
+        <div className={`${open ? 'w-60' : 'w-20'} fixed top-0 duration-300 px-5 min-h-screen  bg-dark`}>
           <img src="../../../public/assets/left-arrow.png"
             className={`bg-white absolute cursor-pointer rounded-full
           -right-3 top-9 w-8 border-4 p-1 border-dark ${!open && "rotate-180"}`}
@@ -68,7 +74,7 @@ const Dashboard = () => {
               className={`cursor-pointer w-16`}
             />
           </div>
-          {role === 'manager' ? (
+          {role === 'admin' ? (
             <ul className="pt-6">
               {MenusManager.map((menu, index) => (
                 <li key={index} className={`text-gray-300 text-sm flex w-11 items-center gap-x-4 cursor-pointer p-2 hover:bg-zinc-800 rounded-md ${menu.gap ? "mt-12" : " "}`}>
@@ -92,12 +98,25 @@ const Dashboard = () => {
                   <span className="text-white p-2 text-2xl mr-1"><AiOutlineLogout /></span><Button onclick={logout} class={`${!open && 'hidden'} duration-200 text-lg text-white`} btn='Logout' />
                 </div>
               </ul>
-            ) : null}
+            ) : 
+            role === 'livreur' ? (
+              <ul className="pt-6">
+               {MenusLivreur.map((menu, index) => (
+                  <li key={index} className={`text-gray-300 text-sm flex w-11 items-center gap-x-4 cursor-pointer p-2 hover:bg-zinc-800 rounded-md ${menu.gap ? "mt-12" : " "}`}>
+                    <Link to={menu.route}><span className={`${!open && 'hidden'} origin-left duration-200 text-lg text-white`}>{menu.title}</span></Link>
+                  </li>
+                ))}
+                <div className="flex items-center">
+                  <span className="text-white p-2 text-2xl mr-1"><AiOutlineLogout /></span><Button onclick={logout} class={`${!open && 'hidden'} duration-200 text-lg text-white`} btn='Logout' />
+                </div>
+              </ul>
+            ): null}
+            
 
         </div>
 
         <div className="p-3 px-5 text-2xl font-semibold flex-1 h-screen">
-          <nav className={`${open ? 'ml-72' : 'ml-20'} duration-300 bg-black ml-20 text-white border-gray-200 px-2 rounded-xl sm:px-4 py-2.5 dark:bg-gray-900`}>
+          <nav className="ml-80 duration-300 bg-black ml-20 text-white border-gray-200 px-2 rounded-xl sm:px-4 py-2.5 dark:bg-gray-900">
             <div className="container flex flex-wrap items-center justify-between mx-auto">
               <a href="#" className="flex items-center">
                 <img src="../../../public/assets/logo.png" className="h-6 mr-3 sm:h-9" alt="Marhaba Logo" />
@@ -105,8 +124,7 @@ const Dashboard = () => {
               <div class="flex items-center md:order-2">
                 {role === 'client' ?
                   <div className="flex align-center">
-                    <h1>{cart.length}</h1>
-                    <BsFillCartCheckFill className='mr-2' onClick={() => dispatch(toggleCard())}/>
+                    <h1>{firstname}</h1>
                   </div>
                   : null
                 }

@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './App.css';
 import axios from 'axios'
 //make the store availible to alll component 
-import { Provider } from 'react-redux';
 // import ProtectedRoutes from './ProtectedRoutes';
 // Pages the Auth
 import Login from './pages/auth/Login'
@@ -22,24 +21,24 @@ import CategoryManager from './pages/user/manager/categoryManager'
 import LivreursManager from './pages/user/manager/LivreursManager'
 import ClientsManager from './pages/user/manager/clientsManager'
 import SettingManager from './pages/user/manager/settingManager'
-import 'react-toastify/dist/ReactToastify.css';
-import store from './store/store'
+import Addlivreur from './pages/user/manager/RegisterLivreur'
 
-window.addEventListener("storage", () => {
-  axios
-    .get('http://localhost:5500/api/auth/logout')
-    .then(() => {
-      localStorage.clear();
-      window.location.replace('http://127.0.0.1:5173/login');
-    })
-    .catch(() => {
-      console.log("Error");
-    });
-});
+import 'react-toastify/dist/ReactToastify.css';
+
+// window.addEventListener("storage", () => {
+//   axios
+//     .get('http://localhost:5500/api/auth/logout')
+//     .then(() => {
+//       localStorage.clear();
+//       window.location.replace('http://127.0.0.1:5173/login');
+//     })
+//     .catch(() => {
+//       console.log("Error");
+//     });
+// });
 
 function App() {
   return (
-    <Provider store={store}>
       <BrowserRouter>
         <Routes>
           {/* { Auth} */}
@@ -54,8 +53,9 @@ function App() {
             <Route path='setting' element={<SettingClient />} />
           </Route>
           {/* { Manager } */}
-          <Route path='/dashboard/manager' element={<Dashboards />}>
+          <Route path='/dashboard/admin' element={<Dashboards />}>
             <Route path='' element={<DashbordManager />} />
+            <Route path='addlivreur' element={<Addlivreur />} />
             <Route path='repas' element={<RepasManager />} />
             <Route path='category' element={<CategoryManager />} />
             <Route path='command' element={<CommandManager />} />
@@ -65,7 +65,6 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </Provider>
   );
 }
 

@@ -54,6 +54,7 @@ function livreursManager() {
               <th scope="col" className="py-2 px-4">Name Complete</th>
               <th scope="col" className="py-2 px-4">Phone</th>
               <th scope="col" className="py-2 px-4">Email</th>
+              <th scope="col" className="py-2 px-4">adress</th>
               <th scope="col" className="py-2 px-4">Action</th>
             </tr>
           </thead>
@@ -69,6 +70,9 @@ function livreursManager() {
                   </td>
                   <td scope="row" className="py-4 px-6 font-medium text-gray-600 whitespace-nowrap dark:text-white">
                     {livreur.email}
+                  </td>
+                  <td scope="row" className="py-4 px-6 font-medium text-gray-600 whitespace-nowrap dark:text-white">
+                    {livreur.address}
                   </td>
                   <td className="py-4 px-6 items-center">
                 <button className = { livreur.isBanned ? "px-4 py-1 btn bg-red-600 text-white rounded" :  "px-4 py-1 rounded bg-green text-white"} value={livreur._id} onClick={bannlivreur}>

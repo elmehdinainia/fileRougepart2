@@ -46,6 +46,8 @@ import axios from "axios";
               <th scope="col" className="py-2 px-4">Name Complete</th>
               <th scope="col" className="py-2 px-4">Phone</th>
               <th scope="col" className="py-2 px-4">Email</th>
+              <th scope="col" className="py-2 px-4">address</th>
+
               <th scope="col" className="py-2 px-4">Action</th>
             </tr>
           </thead>
@@ -61,6 +63,9 @@ import axios from "axios";
                   </td>
                   <td scope="row" className="py-4 px-6 font-medium text-gray-600 whitespace-nowrap dark:text-white">
                     {client.email}
+                  </td>
+                  <td scope="row" className="py-4 px-6 font-medium text-gray-600 whitespace-nowrap dark:text-white">
+                    {client.address}
                   </td>
                   <td className="py-4 px-6 items-center">
                     <button className={client.isBanned ? "px-4 py-1 btn bg-red-600 text-white rounded" :  "px-4 py-1 rounded bg-green text-white"} onClick={bannclient} value={client._id}>

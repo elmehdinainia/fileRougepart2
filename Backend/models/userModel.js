@@ -27,6 +27,11 @@ const userSchema = mongoose.Schema({
     required: true,
     trim: true
   },
+  address: {
+    type: String,
+    required: true,
+    trim: true
+  },
   
   role: {
     

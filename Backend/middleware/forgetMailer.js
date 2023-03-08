@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-function   forgetMailer(path, email) {
+function  forgetMailer(path, email) {
 
   const token = jwt.sign({ email: email }, process.env.SECRET)
 

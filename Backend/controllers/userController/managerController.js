@@ -49,17 +49,6 @@ const registerlivreur = async (req, res) => {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
 const managerUser = async (req, res) => {
   const token = storage('token')
   const token_user = await jwt.verify(token, process.env.SECRET)
@@ -128,7 +117,7 @@ const updateuser = async (req, res) => {
 }
 
 const listclient = async (req, res) => {
-  const id_role = '638f45b410a60d0c0019353a'
+  const id_role = 'client'
 
   const findclient = await User.find({ role: id_role })
   if (findclient) {
@@ -142,7 +131,7 @@ const listclient = async (req, res) => {
 }
 
 const listlivreur = async (req, res) => {
-  const id_role = '638f45b410a60d0c0019353b'
+  const id_role = 'livreur'
 
   const findclient = await User.find({ role: id_role })
   if (findclient) {
@@ -270,6 +259,7 @@ module.exports = {
   statistique,
   addimage,
   deletproduct,
+  registerlivreur,
   GetAllProduct,
   updateproduct
 }

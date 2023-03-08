@@ -53,8 +53,8 @@ function Login() {
         else if (role === 'livreur') {
           navigate('/dashboard/livreur')
         }
-        else if (role === 'manager') {
-          navigate('/dashboard/manager')
+        else if (role === 'admin') {
+          navigate('/dashboard/admin')
         }
 
       })
