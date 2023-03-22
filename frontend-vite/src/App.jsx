@@ -1,9 +1,11 @@
 import React  from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './App.css';
-import axios from 'axios'
 //make the store availible to alll component 
 // import ProtectedRoutes from './ProtectedRoutes';
+
+//home
+import Home from './pages/auth/Home'
 // Pages the Auth
 import Login from './pages/auth/Login'
 import Signup from './pages/auth/Signup'
@@ -41,8 +43,9 @@ function App() {
   return (
       <BrowserRouter>
         <Routes>
+          
           {/* { Auth} */}
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
