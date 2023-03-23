@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import Label from '../../components/Label'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
+import { BiShow, BiHide } from "react-icons/bi";
+
 import Axios from 'axios'
 import Header from "../../components/Header"
 import { ToastContainer, toast } from 'react-toastify';
@@ -11,10 +13,17 @@ import 'react-toastify/dist/ReactToastify.css';
 const baseURL = 'http://localhost:5500/api/auth'
 
 function Login() {
+  const [showPassword, setShowPassword] = useState(false);
+
 
   const navigate = useNavigate()
 
   const [user, setUser] = useState({})
+
+  const handleShowPassword = () => {
+    setShowPassword((preve) => !preve);
+  };
+
 
   const onChange = (e) => {
     const valeur = e.target.value
@@ -76,12 +85,20 @@ function Login() {
               <form onSubmit={onSubmit} className="space-y-5 md:space-y-6">
                 <p className="text-center font-bold text-red-500 text-3xl   ">Login</p>
                 <div>
+                  
                   <Label htmlFor="Email" class="block mb-3 text-sm font-medium text-black" label="Email" />
-                  <Input type="text" name="email" onChange={onChange} id="email" class="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" />
+                  <Input type="text" name="email" onChange={onChange} id="email" class="bg-gray-50 border border-red-300 text-black sm:text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5  dark:border-red-600 dark:placeholder-gray-400 dark:text-darck dark:focus:ring-red-500 dark:focus:border-red-500" placeholder="name@company.com" />
                 </div>
                 <div>
                   <Label htmlFor="password" class="block mb-3 text-sm font-medium text-black" label="Password" />
-                  <Input type="password" name="password" onChange={onChange} id="password" class="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="*********" />
+                  
+                  <Input type={showPassword ? "text":"password"} name="password" onChange={onChange} id="password" class="bg-gray-50 border border-red-300 text-black sm:text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5  dark:border-red-600 dark:placeholder-gray-400 dark:text-darck dark:focus:ring-red-500 dark:focus:border-red-500" placeholder="*********" />
+                  <span
+                  className="flex text-xl cursor-pointer pt-1"
+                  onClick={handleShowPassword}
+                >
+                  {showPassword ? <BiShow /> : <BiHide />}
+                </span>
                 </div>
                 <div className='flex items-center justify-between'>
                   <div className="flex items-start">
