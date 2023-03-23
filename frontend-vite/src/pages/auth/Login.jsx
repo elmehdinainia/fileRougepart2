@@ -77,7 +77,7 @@ function Login() {
     <div >
             <Header/>
 
-      <section className="" >
+      <section className="bg-gray-100" >
 
         <div className="flex  flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <div className="w-full bg-white rounded-lg shadow dark:border sm:max-w-md xl:p-0  dark:border-gray-700  mt-20" >

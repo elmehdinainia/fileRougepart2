@@ -21,10 +21,12 @@ const Header = () => {
 
         <div className="flex items-center gap-4 md:gap-7">
           <nav className="gap-4 md:gap-6 text-base md:text-lg hidden md:flex">
-            <Link to={"/"}>Home</Link>
-            <Link to="login">Login</Link>
-            <Link to={"about"}>About</Link>
-            <Link to={"contact"}>Contact</Link>
+            <Link className="hover-underline-animation" to={"/"}>Home</Link>
+            <Link className="hover-underline-animation" to="/login">Login</Link>
+            <Link className="hover-underline-animation" to="/signup">Register</Link>
+
+            <Link className="hover-underline-animation" to={"about"}>About</Link>
+            <Link className="hover-underline-animation" to={"contact"}>Contact</Link>
           </nav>
           <div className="text-2xl text-slate-600 relative">
             <Link to={"cart"}>
