@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../public/assets/plat4.png";
+import logo from "../../public/assets/logo.jpg";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { BsCartFill } from "react-icons/bs";
 
@@ -14,7 +14,7 @@ const Header = () => {
 
       <div className="flex items-center h-full justify-between">
         <Link to={""}>
-          <div className="h-10">
+          <div className="h-12">
             <img src={logo} className="h-full" />
           </div>
         </Link>

@@ -1,7 +1,31 @@
-import React from 'react'
+import { React, useState, useEffect } from 'react'
+import axios from "axios";
 import Header from '../../components/Header'
+import HomeCard from '../../components/HomeCard'
+import CardFeature from '../../components/CardFeature';
+
+const baseURL = 'http://localhost:5500/api/user/manager'
+
+
 
 function Home() {
+  const [repas, setrepas] = useState([])
+  const affichagrep = async () => {
+    const datarepas = await axios.get(`${baseURL}/GetAllProduct`)
+    if (datarepas) {
+      setrepas(datarepas.data)
+      // console.log(datarepas.data)
+    } else {
+      console.log("error", err)
+    }
+  }
+  const data = repas.slice(0,4) 
+  const homeProductVegitable = repas.filter(el=>el.category.name ==="vegitable",[])
+  console.log(homeProductVegitable)
+  useEffect(() => {
+    affichagrep()
+  }, [])
+
   return (
     <div>
 
@@ -29,7 +53,47 @@ function Home() {
           <button className="font-bold bg-red-500 text-slate-200 px-4 py-2 rounded-md">
             Order Now
           </button>
+          </div>
+   
+          <div className="md:w-1/2 flex flex-wrap gap-5 p-4 justify-center">
+          { data && data.map(el=>{
+            return(
+              <HomeCard
+                 images={el.images[0]}
+                 name={el.name}
+                 price={el.price}
+                 category={el.category}
+
+              />
+            )
+            
+          })}
+         
         </div>
+     
+
+       
+        </div>
+        <div>
+          <h2 className='font-bold text-2xl text-slate-800 '>Fresh Vegitable</h2>
+          <div className='flex'>
+            {
+              homeProductVegitable.map(el=>{
+                return(
+                  <CardFeature
+                  key={el._id}
+                  images={el.images[0]}
+                  name={el.name}
+                  price={el.price}
+                  category={el.category}
+                  description={el.description}
+                  />
+
+                )
+              })
+            }
+
+          </div>
         </div>
 
     </div>
