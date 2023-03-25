@@ -1,7 +1,8 @@
-import { React, useState, useEffect } from 'react'
+import { React, useState, useEffect, useRef } from 'react'
 import axios from "axios";
 import Header from '../../components/Header'
 import HomeCard from '../../components/HomeCard'
+import {GrNext,GrPrevious} from "react-icons/gr" 
 import CardFeature from '../../components/CardFeature';
 
 const baseURL = 'http://localhost:5500/api/user/manager'
@@ -22,6 +23,15 @@ function Home() {
   const data = repas.slice(0,4) 
   const homeProductVegitable = repas.filter(el=>el.category.name ==="vegitable",[])
   console.log(homeProductVegitable)
+// function next preview 
+const slidProductRef = useRef()
+  const prevpodyct = () =>{
+    slidProductRef.current.scrollLeft += 200
+  }
+  const nextpodyct = () =>{
+    slidProductRef.current.scrollLeft -= 200
+  }
+
   useEffect(() => {
     affichagrep()
   }, [])
@@ -74,9 +84,19 @@ function Home() {
 
        
         </div>
-        <div>
-          <h2 className='font-bold text-2xl text-slate-800 mb-2 ml-3'>Fresh Vegitable</h2>
-          <div className='flex'>
+        <div className=''>
+          <div className='flex w-full items-center'>
+            <h2 className='font-bold text-2xl text-slate-800 mb-2 ml-3'>
+              Fresh Vegitable
+            </h2>
+            <div className='ml-auto flex gap-4'>
+              <button onClick={prevpodyct} className='bg-slate-300 hover:bg-slate-400 text-lg p-1 ronded'> <GrPrevious /></button>
+              <button onClick={nextpodyct} className='bg-slate-300 hover:bg-slate-400 text-lg p-1 ronded'><GrNext/> </button>
+
+             
+            </div>
+          </div>
+          <div className='flex gap-5 overflow-scroll scrollbar-none scroll-smooth transition-all' ref={slidProductRef}>
             {
               homeProductVegitable.map(el=>{
                 return(
@@ -94,6 +114,12 @@ function Home() {
             }
 
           </div>
+        </div>
+
+        <div className=''>
+        <h2 className='font-bold text-2xl text-slate-800 mb-2 ml-3'>
+              Fresh Vegitable
+            </h2>
         </div>
 
     </div>

@@ -18,7 +18,7 @@ const CardFeature = ({ images, name, price, category, id,description }) => {
             <div className="h-28 flex flex-col justify-center items-center">
               <img src={`${imagePath}/${images}`} className="h-full" />
             </div>
-            <h3 className="font-semibold text-slate-600  capitalize text-lg mt-4 whitespace-nowrap overflow-hidden">
+            <h3 className="font-semibold text-slate-600  capitalize text-lg mt-4 whitespace-nowrap overflow-hidden ">
               {name}
             </h3>
             <p className=" text-slate-500  font-medium">{category.name}</p>

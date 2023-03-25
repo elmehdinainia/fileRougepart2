@@ -162,8 +162,8 @@ function repasManager() {
             : null
         }
       </div>
-      <div class={`${open ? 'ml-72' : 'ml-20'}  duration-300 overflow-x-auto mt-6 relative shadow-md drop-shadow-2xl sm:rounded-lg`}>
-        <table class="w-full text-sm text-left mb-5 text-gray-500  dark:text-gray-400">
+      <div class={`${open ? 'ml-72' : 'ml-20'}  duration-300 overflow-x-auto overflow-y-scroll mt-6 relative shadow-md drop-shadow-2xl sm:rounded-lg`}>
+        <table class="w-full text-sm text-left mb-5 text-gray-500  dark:text-gray-400  ">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" class="py-3 px-6">Name</th>
