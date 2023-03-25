@@ -75,7 +75,7 @@ function Home() {
        
         </div>
         <div>
-          <h2 className='font-bold text-2xl text-slate-800 '>Fresh Vegitable</h2>
+          <h2 className='font-bold text-2xl text-slate-800 mb-2 ml-3'>Fresh Vegitable</h2>
           <div className='flex'>
             {
               homeProductVegitable.map(el=>{
