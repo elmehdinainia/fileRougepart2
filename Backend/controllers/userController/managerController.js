@@ -133,6 +133,7 @@ const listclient = async (req, res) => {
   }
 }
 
+
 const listlivreur = async (req, res) => {
   const id_role = 'livreur'
 
@@ -204,6 +205,18 @@ const deletproduct = async (req, res) => {
   }
 
 }
+const OneProduct = async (req,res) =>{
+  const id = req.params.id;
+  const OneProduct = await Meal.findById(id).populate({
+    path : 'category',
+    model : Category
+  })
+    if (OneProduct) {
+      res.send(OneProduct);
+    }
+    else throw new Error("no product found");
+}
+
 
 const GetAllProduct = async (req, res) => {
   const allProduct = await Meal.find().populate({
@@ -217,20 +230,32 @@ const GetAllProduct = async (req, res) => {
 };
 
 
+
 const statistique = async (req,res)=>{
+  const id_livreur = 'livreur'
+  const id_client = 'client'
   const user = await User.find().count()
+  const livreur = await  User.find({ role: id_livreur }).count()
+  const client = await  User.find({ role: id_client }).count()
   const meal = await Meal.find().count()
   const category = await Category.find().count()
-  res.json({user,meal,category})
+  res.json({user,meal,category,livreur,client})
 }
 
 const updateproduct = async (req, res) => {
-  const { id } = req.params
+      const { id } = req.params
+        const categorie = await Category.findOne({ name:req.body.category });
+        console.log(req.body)
+      if (!categorie) return res.status(400).json({ message: "Invalid Category" });
+      const product = await Meal.findById(id);
+      if (!product) {
+        return res.status(400).json({ message: "Product not found" });
+      }
   const UpdatedProduct = {
     name: req.body.name,
     description: req.body.description,
     price: req.body.price,
-    categorie: req.body.categorie,
+    category: categorie._id,
     images: req.file.filename
 
   };
@@ -264,5 +289,6 @@ module.exports = {
   deletproduct,
   Registerlivreur,
   GetAllProduct,
-  updateproduct
+  updateproduct,
+  OneProduct
 }

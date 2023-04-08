@@ -67,14 +67,20 @@ const registerUser = async (req, res) => {
 
 
 const verifyEmail = async (req, res) => {
-  const verify_email = await jwt.verify(req.params.token, process.env.SECRET)
 
-  const verifyUser = await User.findOne({ email: verify_email.email })
-  if (verifyUser && verifyUser.verification === true) res.redirect('http://localhost:5173/login');
-  const verification_email = await User.updateOne({ email: verify_email.email }, { $set: { verification: true } })
-  if (verification_email) res.redirect('http://localhost:5173/login');
-  if (verifyUser && verifyUser.verification === true) throw Error('You Are Registed')
-  if (!verification_email) throw Error("You can't to active your account")
+          const verify_email = await jwt.verify(req.params.token, process.env.SECRET)
+
+          const verifyUser = await User.findOne({ email: verify_email.email })
+
+          if (verifyUser && verifyUser.verification === true) res.redirect('http://localhost:5173/login');
+
+          const verification_email = await User.updateOne({ email: verify_email.email }, { $set: { verification: true } })
+
+          if (verification_email) res.redirect('http://localhost:5173/login');
+
+          if (verifyUser && verifyUser.verification === true) throw Error('You Are Registed')
+
+          if (!verification_email) throw Error("You can't to active your account")
 }
 /**
  * methode => post

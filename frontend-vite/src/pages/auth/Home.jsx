@@ -3,6 +3,9 @@ import axios from "axios";
 import Header from '../../components/Header'
 import HomeCard from '../../components/HomeCard'
 import {GrNext,GrPrevious} from "react-icons/gr" 
+import Footer from '../../components/Footer'
+import AllProduct from '../../components/Allproduct'
+
 import CardFeature from '../../components/CardFeature';
 
 const baseURL = 'http://localhost:5500/api/user/manager'
@@ -15,26 +18,30 @@ function Home() {
     const datarepas = await axios.get(`${baseURL}/GetAllProduct`)
     if (datarepas) {
       setrepas(datarepas.data)
-      // console.log(datarepas.data)
     } else {
       console.log("error", err)
     }
   }
+
   const data = repas.slice(0,4) 
   const homeProductVegitable = repas.filter(el=>el.category.name ==="vegitable",[])
-  console.log(homeProductVegitable)
-// function next preview 
+
+
+  
 const slidProductRef = useRef()
-  const prevpodyct = () =>{
-    slidProductRef.current.scrollLeft += 200
-  }
-  const nextpodyct = () =>{
-    slidProductRef.current.scrollLeft -= 200
-  }
+      const prevpodyct = () =>{
+        slidProductRef.current.scrollLeft -= 200
+      }
+      const nextpodyct = () =>{
+        slidProductRef.current.scrollLeft += 200
+      }
+
 
   useEffect(() => {
     affichagrep()
   }, [])
+
+
 
   return (
     <div>
@@ -64,11 +71,13 @@ const slidProductRef = useRef()
             Order Now
           </button>
           </div>
+
    
           <div className="md:w-1/2 flex flex-wrap gap-5 p-4 justify-center">
           { data && data.map(el=>{
             return(
               <HomeCard
+                 id={el._id}
                  images={el.images[0]}
                  name={el.name}
                  price={el.price}
@@ -82,7 +91,7 @@ const slidProductRef = useRef()
         </div>
      
 
-       
+
         </div>
         <div className=''>
           <div className='flex w-full items-center'>
@@ -95,6 +104,7 @@ const slidProductRef = useRef()
 
              
             </div>
+            
           </div>
           <div className='flex gap-5 overflow-scroll scrollbar-none scroll-smooth transition-all' ref={slidProductRef}>
             {
@@ -102,6 +112,7 @@ const slidProductRef = useRef()
                 return(
                   <CardFeature
                   key={el._id}
+                  id={el._id}
                   images={el.images[0]}
                   name={el.name}
                   price={el.price}
@@ -115,13 +126,51 @@ const slidProductRef = useRef()
 
           </div>
         </div>
+        
 
-        <div className=''>
-        <h2 className='font-bold text-2xl text-slate-800 mb-2 ml-3'>
-              Fresh Vegitable
-            </h2>
-        </div>
+        {/* <div className='my-5'>
+            <h2 className='font-bold text-2xl text-slate-800 mb-2 ml-3'>
+              Your Product
+                </h2>
 
+                <div className='flex gap-4 justify-center overflow-scroll scrollbar'>
+                  {
+                  categoryList[0] && categoryList.map(el=>{
+                    return(
+                      <FilterProduct category={el} onClick={()=>handleFilterProduct(el)}/>
+                    )
+                  })
+                  }
+       
+                </div>
+
+                <div className='flex flex-wrap justify-center gap-3'>
+                {
+                 dataFilter.map(el=>{
+                return(
+                  <CardFeature
+                  key={el._id}
+                  id={el._id}
+                  images={el.images[0]}
+                  name={el.name}
+                  price={el.price}
+                  category={el.category}
+                  description={el.description}
+                  />
+
+                )
+              })
+            }
+
+                </div>
+
+
+
+        </div> */}
+        <AllProduct heading={"Your Product"}/>
+
+        
+              <Footer/>
     </div>
   )
 }

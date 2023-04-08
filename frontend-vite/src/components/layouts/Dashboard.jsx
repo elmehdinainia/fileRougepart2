@@ -35,12 +35,7 @@ const Dashboard = () => {
 
 
   const MenusClient = [
-    { title: "Dashboad", icon: AiOutlineDashboard, route: '' },
-    { title: "Salade", icon: GiHotMeal, gap: true, route: '' },
-    { title: "Pizza", icon: GiHotMeal, route: '' },
-    { title: "Tacos", icon: GiHotMeal, route: '' },
-    { title: "Sandwich", icon: GiHotMeal, route: '' },
-    { title: "Desserts", icon: GiHotMeal, route: '' },
+    { title: "Historique", icon: AiOutlineDashboard, route: '' },
     { title: "Setting", icon: AiFillSetting, gap: true, route: 'setting' },
   ]
 
@@ -55,9 +50,8 @@ const Dashboard = () => {
     { title: "Setting", icon: AiFillSetting, gap: true, route: 'setting' },
   ]
   const MenusLivreur = [
-    { title: "Dashboad", icon: AiOutlineDashboard, route: '' },
-    { title: "Commands", icon: BiCommand, route: 'command' },
-    { title: "Setting", icon: AiFillSetting, gap: true, route: 'setting' },
+    { title: "Commande", icon: BiCommand, route: 'Commande' },
+    { title: "Setting", icon: AiFillSetting, gap: true, route: 'Setting' },
   ]
 
   return (
@@ -116,7 +110,7 @@ const Dashboard = () => {
         </div>
 
         <div className="p-3 px-5 text-2xl font-semibold flex-1 h-screen">
-          <nav className="ml-60 duration-300 bg-gray-200 ml-20 text-black border-gray-200 px-2 rounded-xl sm:px-4 py-2.5 red:bg-red-900">
+          <nav className="ml-60 duration-300 bg-gray-200 ml-30 text-black border-gray-200 px-2 rounded-xl sm:px-4 py-2.5 red:bg-red-900">
             <div className="container flex flex-wrap items-center justify-between mx-auto">
               <a href="#" className="flex items-center">
                 <img src="../../../public/assets/logo.jpg" className="h-6 mr-3 sm:h-9" alt="Marhaba Logo" />

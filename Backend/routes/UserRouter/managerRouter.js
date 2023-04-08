@@ -13,7 +13,8 @@ const {
   GetAllProduct,
   updateproduct,
   Registerlivreur,
-  statistique
+  statistique,
+  OneProduct
 
 } = require('../../controllers/userController/managerController')
 
@@ -38,6 +39,8 @@ router.get('/manager/listlivreur', tryCatch(listlivreur))
 router.post('/manager/implodProduct',upload.single('images'), tryCatch(addimage))
 router.delete('/manager/deleteProduct/:id', tryCatch(deletproduct))
 router.get('/manager/GetAllProduct', tryCatch(GetAllProduct))
+router.get('/manager/OneProduct/:id', tryCatch(OneProduct))
+
 router.put('/manager/updateproduct/:id',upload.single('images'), tryCatch(updateproduct))
 //statistique
 router.get('/manager/statistique', tryCatch(statistique))

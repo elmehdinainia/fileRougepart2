@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 const imagePath = 'http://localhost:5500/images'
 
 
-const HomeCard = ({ name, images, category, price }) => {
+const HomeCard = ({ name, images, category, price,id }) => {
   return (
     <div className="bg-white shadow-md p-2 rounded min-w-[150px]">
       {name ? (
         <>
-        <Link to="" onClick={()=>window.scrollTo({top:"0",behavior : "smooth"})} >
+        <Link to={`/menu/${id}`} onClick={()=>window.scrollTo({top:"0",behavior : "smooth"})} >
           <div className="w-40 min-h-[150px]">
             <img src={`${imagePath}/${images}`} className="h-full w-full" />
           </div>

@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 const imagePath = 'http://localhost:5500/images'
 
 
-const CardFeature = ({ images, name, price, category, id,description }) => {
-
+const CardFeature = ({ images, name, price, category,id,description }) => {
 
   return (
     <div className="w-full min-w-[200px] max-w-[200px] bg-white hover:shadow-lg drop-shadow-lg py-5 px-4 cursor-pointer flex flex-col ">
@@ -14,7 +13,6 @@ const CardFeature = ({ images, name, price, category, id,description }) => {
             to={`/menu/${id}`}
             onClick={() => window.scrollTo({ top: "0", behavior: "smooth" })}
           >
-            {console.log(name)}
             <div className="h-28 flex flex-col justify-center items-center">
               <img src={`${imagePath}/${images}`} className="h-full" />
             </div>

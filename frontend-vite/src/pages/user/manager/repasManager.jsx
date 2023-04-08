@@ -12,19 +12,20 @@ const baseURLLogout = 'http://localhost:5500/api/auth'
 const imagePath = 'http://localhost:5500/images'
 
 function repasManager() {
-  const [showModal, setShowModal] = useState(false)
-  const [repas, setrepas] = useState([])
-  const [edite, setEdite] = useState(false)
-  const [editRepas, setEditRepas] = useState({ name: '', description: '', img: '', price: '', category: '' })
-  const [category, setcategory] = useState([])
 
+
+  const [showModal, setShowModal] = useState(false)
+  const [edite, setEdite] = useState(false)
+
+
+ 
+  const [editRepas, setEditRepas] = useState({ name: '', description: '', img: '', price: '', category: '' })
   const updateRepas = (e) => {
     const valeur = e.target.value
     setEditRepas({ ...editRepas, [e.target.name]: valeur })
   }
-  
   const [imgedit, setImgedit] = useState()  
-  
+
    const editmeal = async() =>{
     const dataedit = new FormData()
     dataedit.append('name', editRepas.name)
@@ -46,24 +47,18 @@ function repasManager() {
    } 
    
   const [data, setData] = useState()
-
   const handleChange = (e) => {
     setData({
       ...data,
       [e.target.name]: e.target.value
     }
     )
-    
   }
 
   const [img, setImg] = useState()
-
   function addMeal(e) {
-
     e.preventDefault()
-
     const data2 = new FormData()
-
     data2.append('name', data.name)
     data2.append('description', data.description)
     data2.append('price', data.price)
@@ -80,22 +75,20 @@ function repasManager() {
       })
   }
 
-
+  const [repas, setrepas] = useState([])
   const affichagrepas = async () => {
-
     const datarepas = await axios.get(`${baseURL}/GetAllProduct`)
-
     if (datarepas) {
       setrepas(datarepas.data)
-      console.log(datarepas.data)
     } else {
       console.log("error", err)
     }
   }
+
+
+  const [category, setcategory] = useState([])
   const affichcategory = async () => {
     const datarepas = await axios.get(`${baseURL}/findcategory`)
-
-
     if (datarepas) {
       setcategory(datarepas.data)
       // console.log(datarepas.data)
@@ -115,11 +108,13 @@ function repasManager() {
       .catch((err) => {
         console.log("error", err)
       })
-
   }
+
+
   useEffect(() => {
     affichagrepas()
     affichcategory()
+
   }, [])
 
   return (
@@ -139,10 +134,10 @@ function repasManager() {
                 <Input type="text" name="price" id="price" value={editRepas.price} onChange={updateRepas} class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-black peer" placeholder="Image" required />
               </div>
               <div className="mb-2">
-                <select id="underline_select"  class="block py-2 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-                  <option selected>Choose a Category</option>
+                <select id="underline_select" name="category"   onChange={updateRepas} class="block py-2 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                  <option>Choose a Category</option>
                   {category.map((cate) => (
-                  <option value={cate._id}>{cate.name}</option>
+                  <option selected={editRepas.category == cate.name} value={cate.name}>{cate.name}</option>
                    ))}
                 </select>
               </div>
