@@ -4,6 +4,10 @@ import axios from 'axios'
 import { useParams } from "react-router-dom"
 import Header from "../../components/Header"
 import AllProduct from '../../components/Allproduct'
+import {useDispatch} from "react-redux"
+import { addCartItem } from "../../../redux/productsSlice";
+
+
 
 
 const baseURL = 'http://localhost:5500/api/user/manager/OneProduct'
@@ -12,30 +16,24 @@ const imagePath = 'http://localhost:5500/images'
 
 
 
-
 function Menu() {
+  const dispatch = useDispatch()
   const params = useParams()
-
 
     const id = params.filterby
     const [details,SetdetailProduct] = useState([]);
     // const images = details.images
 
-
-   
-    
-
 const  getOneProduct = async() =>{
-
-
-  const datarepas = await axios.get(`${baseURL}/${id}`)
-
-
-  if (datarepas) {
-    SetdetailProduct(datarepas.data)
-  } else {
-    console.log("error", err)
-  }
+      const datarepas = await axios.get(`${baseURL}/${id}`)
+      if (datarepas) {
+        SetdetailProduct(datarepas.data)
+      } else {
+        console.log("error", err)
+      }
+}
+const handleAddCartProduct = (e) =>{
+  dispatch(addCartItem(details))
 }
 
 
@@ -79,7 +77,7 @@ const  getOneProduct = async() =>{
           </div>
           <div className="flex gap-3">
           <button className="bg-yellow-500 py-1 mt-2 rounded hover:bg-yellow-600 min-w-[100px]">Buy</button>
-          <button  className="bg-yellow-500 py-1 mt-2 rounded hover:bg-yellow-600 min-w-[100px]">Add Cart</button>
+          <button  className="bg-yellow-500 py-1 mt-2 rounded hover:bg-yellow-600 min-w-[100px]" onClick={handleAddCartProduct}>Add Cart</button>
           </div>
    
         </div>

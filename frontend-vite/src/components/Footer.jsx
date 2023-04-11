@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import logo from "../../public/assets/t9adya.png"
+import { useSelector } from 'react-redux'
 
 const Footer = () => {
+
   return (
     <div>
         

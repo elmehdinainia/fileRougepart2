@@ -20,21 +20,22 @@ const Allproduct = ({heading}) => {
     }
   }
         const categoryList = [...new Set(repas.map(el=>el.category.name))]
+        // console.log(categoryList)
 
   const [dataFilter,SetdataFilet] = useState([])
   const handleFilterProduct = (category) =>{
     const filter = repas.filter(el => el.category.name === category)
+         
+
     SetdataFilet(()=>{
-      return[
-        
+      return[     
       ...filter
       ]
     })
   }
         useEffect(() => {
           affichagrep()
-
-          }, [])
+         }, [])
             useEffect(() => {
 
     SetdataFilet(repas)

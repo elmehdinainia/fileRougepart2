@@ -1,10 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 const imagePath = 'http://localhost:5500/images'
+import { addCartItem } from "../../redux/productsSlice";
+import {useDispatch} from "react-redux"
+
 
 
 const CardFeature = ({ images, name, price, category,id,description }) => {
+const dispatch = useDispatch()
+  const handleAddCartProduct = (e) =>{
+    dispatch(addCartItem({
+      _id : id ,
+      name : name,
+      price:price,
+      category : category,
+      description:description,
+      images:images
+    }))
 
+  }
   return (
     <div className="w-full min-w-[200px] max-w-[200px] bg-white hover:shadow-lg drop-shadow-lg py-5 px-4 cursor-pointer flex flex-col ">
       {images ? (
@@ -25,7 +39,7 @@ const CardFeature = ({ images, name, price, category,id,description }) => {
               <span>{price}</span>
             </p>
           </Link>
-          <button
+          <button onClick={handleAddCartProduct}
             className="bg-yellow-500 py-1 mt-2 rounded hover:bg-yellow-600 w-full"
        
           >

@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../public/assets/logo.jpg";
-import { HiOutlineUserCircle } from "react-icons/hi";
 import { BsCartFill } from "react-icons/bs";
+import {useSelector} from "react-redux"
+
 
 const Header = () => {
 
+  const cartItemNumber = useSelector((state)=>state.product.cartItem)
 
 
   return (
@@ -34,7 +36,7 @@ const Header = () => {
             <Link to={"/cart"}>
               <BsCartFill />
               <div className="absolute -top-1 -right-1 text-white bg-red-500 h-4 w-4 rounded-full m-0 p-0 text-sm text-center ">
-                0
+                {cartItemNumber.length}
               </div>
             </Link>
           </div>

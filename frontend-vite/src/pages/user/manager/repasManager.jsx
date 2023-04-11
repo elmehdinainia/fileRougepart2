@@ -6,12 +6,16 @@ import Input from "../../../components/Input";
 import Button from "../../../components/Button";
 import { ToastContainer, toast } from 'react-toastify';
 import axios from "axios";
+import {useDispatch,useSelector} from "react-redux"
+import { setDataProduct } from '../../../../redux/productsSlice';
 
 const baseURL = 'http://localhost:5500/api/user/manager'
-const baseURLLogout = 'http://localhost:5500/api/auth'
 const imagePath = 'http://localhost:5500/images'
 
 function repasManager() {
+  const dispatch = useDispatch()
+  const productData = useSelector((state)=>state.product)
+  console.log(productData)
 
 
   const [showModal, setShowModal] = useState(false)
@@ -80,6 +84,8 @@ function repasManager() {
     const datarepas = await axios.get(`${baseURL}/GetAllProduct`)
     if (datarepas) {
       setrepas(datarepas.data)
+      dispatch(setDataProduct(datarepas.data))
+
     } else {
       console.log("error", err)
     }
@@ -137,7 +143,7 @@ function repasManager() {
                 <select id="underline_select" name="category"   onChange={updateRepas} class="block py-2 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                   <option>Choose a Category</option>
                   {category.map((cate) => (
-                  <option selected={editRepas.category == cate.name} value={cate.name}>{cate.name}</option>
+                  <option  value={cate.name}>{cate.name}</option>
                    ))}
                 </select>
               </div>
